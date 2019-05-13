@@ -39,9 +39,8 @@ public class ShoppingListController {
 
     @PostMapping("/shoppingLists")
     public String addShoppingLists(@RequestParam Customer customers, @RequestParam Ski skis,
-                                  @RequestParam Integer count, @RequestParam String purchaseDay,
-                                   @RequestParam Integer totalPrice, Map<String,Object> model) {
-        ShoppingList shoppingList = new ShoppingList(customers,skis,count,purchaseDay,totalPrice);
+                                  @RequestParam Integer count, @RequestParam String purchaseDay, Map<String,Object> model) {
+        ShoppingList shoppingList = new ShoppingList(customers,skis,count,purchaseDay);
         shoppingListRepository.save(shoppingList);
         Iterable<ShoppingList> shoppingLists = shoppingListRepository.findAll();
         model.put("shoppingLists",shoppingLists);

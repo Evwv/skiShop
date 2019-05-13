@@ -24,7 +24,6 @@
                 </select>
                 <input type="text" name="purchaseDay" placeholder="purchaseDay">
                 <input type="text" name="count" placeholder="count">
-                <input type="text" name="totalPrice" placeholder="totalPrice">
                 <button type="submit" id="closeDialog">Add</button>
             </dialog>
             <script>
@@ -58,7 +57,7 @@
                 <td>${shoppingList.ski.name}</td>
                 <td>${shoppingList.purchaseDay}</td>
                 <td>${shoppingList.count}</td>
-                <td>${shoppingList.totalPrice}</td>
+                <td>${shoppingList.count*shoppingList.ski.price}</td>
                 <td><button><a href="/shoppingLists/delete/${shoppingList.id}">Delete</a></button></td>
             </tr>
         </#list>
