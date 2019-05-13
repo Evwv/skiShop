@@ -33,12 +33,12 @@
             }
 
             nav{
-                right:15px;
-                color:darkgreen;
-                font-size: 25px;
+                right:20px;
+                color: gold;
+                font-size: 35px;
                 font-style:italic;
                 margin-bottom: 30px;
-                background-color: antiquewhite;
+                background-color: darkseagreen;
             }
             div{
                 text-align: center;
@@ -50,11 +50,12 @@
         </style>
 
         <nav align="center">
-            <a href="/customers">Сustomers</a>/
-            <a href="/skis">Ski</a>/
-            <a href="/reservations">Reservation</a>/
-            <a href="/shoppingLists">ShoppingList</a>/
-            <a href="/companies">Companies</a>/
+            <a href="/customers">Сustomers</a>
+            <a href="/companies">Companies</a>
+            <a href="/skis">Ski</a>
+            <a href="/reservations">Reservation</a>
+            <a href="/shoppingLists">ShoppingList</a>
+            <a href="/discountLists">DiscountList</a>
         </nav>
     </header>
 </#macro>

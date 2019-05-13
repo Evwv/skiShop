@@ -44,7 +44,7 @@
                 <td>${ski.firm}</td>
                 <td>${ski.length}</td>
                 <td>${ski.price}</td>
-                <td><a href="/skis/delete/${ski.id}">Delete</a></td>
+                <td><button><a href="/skis/delete/${ski.id}">Delete</a></button></td>
             </tr>
         </#list>
     </table>

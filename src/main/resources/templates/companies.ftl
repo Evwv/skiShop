@@ -47,10 +47,12 @@
                 <td>${company.numberOfEmployees}</td>
                 <td>${company.address}</td>
                 <td>${company.phone}</td>
-                <td><a href="/companies/delete/${company.id}">Delete</a></td>
+                <td><button><a href="/companies/delete/${company.id}">Delete</a></button></td>
+                <td><button type="button" id="openDialog">Update</button></td>
             </tr>
         </#list>
     </table>
 </div>
+
 </body>
 </html>

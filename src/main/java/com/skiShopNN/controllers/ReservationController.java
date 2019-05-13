@@ -51,8 +51,10 @@ public class ReservationController {
     }
 
     @RequestMapping(value = "reservations/delete/{id}",method = RequestMethod.GET)
-    public String deleteItem(@PathVariable Integer id) {
+    public String deleteItem(@PathVariable Integer id, Map<String,Object> model) {
         reservationRepository.deleteById(id);
+        Iterable<Reservation> reservations = reservationRepository.findAll();
+        model.put("reservations",reservations);
         return "redirect:/reservations";
     }
 

@@ -50,8 +50,10 @@ public class ShoppingListController {
     }
 
     @RequestMapping(value = "shoppingLists/delete/{id}",method = RequestMethod.GET)
-    public String deleteItem(@PathVariable Integer id) {
+    public String deleteItem(@PathVariable Integer id, Map<String,Object> model) {
         shoppingListRepository.deleteById(id);
+        Iterable<ShoppingList> shoppingLists = shoppingListRepository.findAll();
+        model.put("shoppingLists",shoppingLists);
         return "redirect:/shoppingLists";
     }
 }

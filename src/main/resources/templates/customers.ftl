@@ -41,7 +41,7 @@
                 <td>${customer.name}</td>
                 <td>${customer.surname}</td>
                 <td>${customer.phone}</td>
-                <td><a href="/customers/delete/${customer.id}">Delete</a></td>
+                <td><button><a href="/customers/delete/${customer.id}">Delete</a></button></td>
             </tr>
         </#list>
     </table>

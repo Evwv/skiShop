@@ -32,11 +32,11 @@ public class SkiController {
         skiRepository.save(ski);
         Iterable<Ski> skis = skiRepository.findAll();
         model.put("skis",skis);
-        return "skis";
+        return "redirect:/skis";
     }
 
     @RequestMapping(value = "skis/delete/{id}",method = RequestMethod.GET)
-    public String deleteSki(@PathVariable Integer id) {
+    public String deleteSki(@PathVariable Integer id, Map<String,Object> model) {
         Iterable<Reservation> reservations = reservationRepository.findAll();
         if (reservations.iterator().hasNext()) {
             for (Reservation reservation : reservations) {
@@ -47,6 +47,8 @@ public class SkiController {
         } else {
             skiRepository.deleteById(id);
         }
+        Iterable<Ski> skis = skiRepository.findAll();
+        model.put("skis",skis);
         return "redirect:/skis";
     }
 }

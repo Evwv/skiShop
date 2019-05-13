@@ -33,11 +33,11 @@ public class CustomerController {
         customerRepository.save(customer);
         Iterable<Customer> customers = customerRepository.findAll();
         model.put("customers",customers);
-        return "customers";
+        return "redirect:/customers";
     }
 
     @RequestMapping(value="customers/delete/{id}", method= RequestMethod.GET)
-    public String delete(@PathVariable Integer id) {
+    public String delete(@PathVariable Integer id, Map<String,Object> model) {
         Iterable<Reservation> reservations = reservationRepository.findAll();
         if (reservations.iterator().hasNext()) {
             for (Reservation reservation : reservations) {
@@ -51,6 +51,8 @@ public class CustomerController {
         } else {
             customerRepository.deleteById(id);
         }
+        Iterable<Customer> customers = customerRepository.findAll();
+        model.put("customers",customers);
         return "redirect:/customers";
     }
 }
