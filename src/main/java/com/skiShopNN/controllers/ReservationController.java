@@ -50,5 +50,11 @@ public class ReservationController {
         return "redirect:/reservations";
     }
 
+    @RequestMapping(value = "reservations/delete/{id}",method = RequestMethod.GET)
+    public String deleteItem(@PathVariable Integer id) {
+        reservationRepository.deleteById(id);
+        return "redirect:/reservations";
+    }
+
 
 }

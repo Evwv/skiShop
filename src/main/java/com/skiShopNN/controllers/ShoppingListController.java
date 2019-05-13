@@ -9,9 +9,7 @@ import com.skiShopNN.repository.ShoppingListRepository;
 import com.skiShopNN.repository.SkiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -48,6 +46,12 @@ public class ShoppingListController {
         Iterable<ShoppingList> shoppingLists = shoppingListRepository.findAll();
         model.put("shoppingLists",shoppingLists);
 
+        return "redirect:/shoppingLists";
+    }
+
+    @RequestMapping(value = "shoppingLists/delete/{id}",method = RequestMethod.GET)
+    public String deleteItem(@PathVariable Integer id) {
+        shoppingListRepository.deleteById(id);
         return "redirect:/shoppingLists";
     }
 }

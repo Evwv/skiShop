@@ -41,7 +41,7 @@ public class CustomerController {
         Iterable<Reservation> reservations = reservationRepository.findAll();
         if (reservations.iterator().hasNext()) {
             for (Reservation reservation : reservations) {
-                if (!(customerRepository.findById(id).get().getId()==reservation.getCustomer().getId())) {
+                if (!(reservation.getCustomer().getId().equals(id))) {
                     customerRepository.deleteById(id);
                 }/* else {
                     customerRepository.deleteById(id);

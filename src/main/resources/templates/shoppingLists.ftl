@@ -59,6 +59,7 @@
                 <td>${shoppingList.purchaseDay}</td>
                 <td>${shoppingList.count}</td>
                 <td>${shoppingList.totalPrice}</td>
+                <td><a href="/shoppingLists/delete/${shoppingList.id}">Delete</a></td>
             </tr>
         </#list>
     </table>

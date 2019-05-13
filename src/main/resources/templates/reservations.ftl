@@ -58,6 +58,7 @@
                 <td>${reservation.startDate}</td>
                 <td>${reservation.finalDate}</td>
                 <td>${reservation.count}</td>
+                <td><a href="/reservations/delete/${reservation.id}">Delete</a></td>
             </tr>
         </#list>
     </table>

@@ -54,6 +54,7 @@
             <a href="/skis">Ski</a>/
             <a href="/reservations">Reservation</a>/
             <a href="/shoppingLists">ShoppingList</a>/
+            <a href="/companies">Companies</a>/
         </nav>
     </header>
 </#macro>

@@ -1,12 +1,13 @@
 package com.skiShopNN.controllers;
 
+import com.skiShopNN.model.Reservation;
 import com.skiShopNN.model.Ski;
+import com.skiShopNN.repository.ReservationRepository;
 import com.skiShopNN.repository.SkiRepository;
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -14,6 +15,9 @@ import java.util.Map;
 public class SkiController {
     @Autowired
     private SkiRepository skiRepository;
+
+    @Autowired
+    private ReservationRepository reservationRepository;
 
     @GetMapping("/skis")
     public String skis(Map<String,Object> model) {
@@ -29,5 +33,20 @@ public class SkiController {
         Iterable<Ski> skis = skiRepository.findAll();
         model.put("skis",skis);
         return "skis";
+    }
+
+    @RequestMapping(value = "skis/delete/{id}",method = RequestMethod.GET)
+    public String deleteSki(@PathVariable Integer id) {
+        Iterable<Reservation> reservations = reservationRepository.findAll();
+        if (reservations.iterator().hasNext()) {
+            for (Reservation reservation : reservations) {
+                if(!(reservation.getSki().getId().equals(id))) {
+                    skiRepository.deleteById(id);
+                }
+            }
+        } else {
+            skiRepository.deleteById(id);
+        }
+        return "redirect:/skis";
     }
 }
