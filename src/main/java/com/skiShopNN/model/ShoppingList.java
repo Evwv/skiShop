@@ -28,17 +28,17 @@ public class ShoppingList {
     private String purchaseDay;
 
     @Column(name = "total_price")
-    private Integer totalPrace;
+    private Integer totalPrice;
 
     public ShoppingList() {
     }
 
-    public ShoppingList(Customer customer, Ski ski, Integer count, String purchaseDay, Integer totalPrace) {
+    public ShoppingList(Customer customer, Ski ski, Integer count, String purchaseDay, Integer totalPrice) {
         this.customer = customer;
         this.ski = ski;
         this.count = count;
         this.purchaseDay = purchaseDay;
-        this.totalPrace = totalPrace;
+        this.totalPrice = totalPrice;
     }
 
     public Integer getId() {
@@ -81,11 +81,11 @@ public class ShoppingList {
         this.purchaseDay = purchaseDay;
     }
 
-    public Integer getTotalPrace() {
-        return totalPrace;
+    public Integer getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setTotalPrace(Integer totalPrace) {
-        this.totalPrace = totalPrace;
+    public void setTotalPrice(Integer totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

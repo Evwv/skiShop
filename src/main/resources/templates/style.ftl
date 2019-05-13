@@ -52,7 +52,8 @@
         <nav align="center">
             <a href="/customers">Сustomers</a>/
             <a href="/skis">Ski</a>/
-            <a href="/reservations">Reservations</a>/
+            <a href="/reservations">Reservation</a>/
+            <a href="/shoppingLists">ShoppingList</a>/
         </nav>
     </header>
 </#macro>
