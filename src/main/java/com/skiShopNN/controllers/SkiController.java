@@ -30,7 +30,7 @@ public class SkiController {
         return "skis";
     }
 
-    @PostMapping("/skisAdd")
+    @PostMapping("/skis")
     public String addSkis(@RequestParam String name, @RequestParam String firm, @RequestParam String length, @RequestParam Integer price, Map<String,Object> model) {
         Ski ski = new Ski(name,length,firm,price);
         skiRepository.save(ski);
@@ -48,6 +48,11 @@ public class SkiController {
         ski.setFirm(firm);
         ski.setLength(length);
         ski.setPrice(price);
+        skiRepository.save(ski);
+        List<Ski> skis = skiRepository.findAll();
+        SkiComparator skiComparator = new SkiComparator();
+        skis.sort(skiComparator);
+        model.put("skis",skis);
         return "redirect:/skis";
     }
 

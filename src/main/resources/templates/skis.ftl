@@ -1,12 +1,14 @@
 <#import "style.ftl" as st>
 <html>
-
+<head>
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+</head>
 <body>
 <@st.style>
 </@st.style>
 <div class="main">
     <div>
-        <form method="post" action="/skisAdd">
+        <form method="post" action="/skis">
             <button type="button" id="openDialog">Add Ski</button>
             <dialog>
                 <input type="text" name="name" placeholder="name">

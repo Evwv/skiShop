@@ -25,18 +25,18 @@ public class CompanyController {
 
     @GetMapping("/companies")
     public String companies(Map<String, Object> model) {
-        Iterable<Company> companies = companyRepository.findAll();
-        model.put("companies", companies);
+        List<Company> companies = companyRepository.findAll();
+        CompaniesComparator companiesComparator = new CompaniesComparator();
+        companies.sort(companiesComparator);
+        model.put("companies",companies);
         return "companies";
     }
 
-    @PostMapping("/companiesAdd")
+    @PostMapping("/companies")
     public String addCompany(@RequestParam String companyName, @RequestParam String country,
                              @RequestParam String numberOfEmployees, @RequestParam String address, @RequestParam String phone, Map<String, Object> model) {
         Company company = new Company(companyName, country, numberOfEmployees, address, phone);
         companyRepository.save(company);
-        Iterable<Company> companies = companyRepository.findAll();
-        model.put("companies", companies);
         return "redirect:/companies";
     }
 
@@ -52,8 +52,6 @@ public class CompanyController {
         } else {
             companyRepository.deleteById(id);
         }
-        Iterable<Company> companies = companyRepository.findAll();
-        model.put("companies", companies);
         return "redirect:/companies";
     }
 
@@ -67,10 +65,6 @@ public class CompanyController {
         company.setAddress(address);
         company.setPhone(phone);
         companyRepository.save(company);
-        List<Company> companies = companyRepository.findAll();
-        CompaniesComparator companiesComparator = new CompaniesComparator();
-        companies.sort(companiesComparator);
-        model.put("companies",companies);
         return "redirect:/companies";
     }
 }
