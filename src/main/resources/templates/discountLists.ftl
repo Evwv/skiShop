@@ -51,6 +51,7 @@
                 <td>${discountList.finalDate}</td>
                 <td>${discountList.discount}</td>
                 <td><button><a href="/discountLists/delete/${discountList.id}">Delete</a></button></td>
+                <td><button type="button" id="openDialog">Update</button></td>
             </tr>
         </#list>
     </table>

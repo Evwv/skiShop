@@ -59,6 +59,7 @@
                 <td>${shoppingList.count}</td>
                 <td>${shoppingList.count*shoppingList.ski.price}</td>
                 <td><button><a href="/shoppingLists/delete/${shoppingList.id}">Delete</a></button></td>
+                <td><button type="button" id="openDialog">Update</button></td>
             </tr>
         </#list>
     </table>

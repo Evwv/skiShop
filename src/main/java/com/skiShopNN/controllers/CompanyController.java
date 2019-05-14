@@ -1,14 +1,19 @@
 package com.skiShopNN.controllers;
 
+import com.skiShopNN.comparators.CompaniesComparator;
 import com.skiShopNN.model.Company;
 import com.skiShopNN.model.DiscountList;
 import com.skiShopNN.repository.CompanyRepository;
 import com.skiShopNN.repository.DiscountListRepository;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class CompanyController {
@@ -25,7 +30,7 @@ public class CompanyController {
         return "companies";
     }
 
-    @PostMapping("/companies")
+    @PostMapping("/companiesAdd")
     public String addCompany(@RequestParam String companyName, @RequestParam String country,
                              @RequestParam String numberOfEmployees, @RequestParam String address, @RequestParam String phone, Map<String, Object> model) {
         Company company = new Company(companyName, country, numberOfEmployees, address, phone);
@@ -49,6 +54,23 @@ public class CompanyController {
         }
         Iterable<Company> companies = companyRepository.findAll();
         model.put("companies", companies);
+        return "redirect:/companies";
+    }
+
+    @PostMapping("/companiesUpdates")
+    public String updateCompany(@RequestParam String companyName, @RequestParam String country,
+                                @RequestParam String numberOfEmployees, @RequestParam String address, @RequestParam String phone, @RequestParam Integer id, Map<String, Object> model) {
+        Company company = companyRepository.findById(id).get();
+        company.setCompanyName(companyName);
+        company.setCountry(country);
+        company.setNumberOfEmployees(numberOfEmployees);
+        company.setAddress(address);
+        company.setPhone(phone);
+        companyRepository.save(company);
+        List<Company> companies = companyRepository.findAll();
+        CompaniesComparator companiesComparator = new CompaniesComparator();
+        companies.sort(companiesComparator);
+        model.put("companies",companies);
         return "redirect:/companies";
     }
 }

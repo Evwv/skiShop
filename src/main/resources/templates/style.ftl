@@ -1,6 +1,5 @@
 <#macro style>
     <header>
-
         <style>
             .table_dark {
                 font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
@@ -46,6 +45,7 @@
             button{
                 color: crimson;
                 text-align: center;
+                font-size: 15px;
             }
         </style>
 

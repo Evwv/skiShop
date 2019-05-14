@@ -1,6 +1,7 @@
 
 package com.skiShopNN.controllers;
 
+import com.skiShopNN.comparators.CustomersComparator;
 import com.skiShopNN.model.Customer;
 import com.skiShopNN.model.Reservation;
 import com.skiShopNN.repository.CustomerRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -21,7 +23,10 @@ public class CustomerController {
 
     @GetMapping("/customers")
     public String customers(Map<String,Object> model) {
-        Iterable<Customer> customers = customerRepository.findAll();
+        CustomersComparator customersComparator = new CustomersComparator();
+        customerRepository.findAll().sort(customersComparator);
+        List<Customer> customers = customerRepository.findAll();
+        customers.sort(customersComparator);
         model.put("customers",customers);
         return"customers";
     }
@@ -31,7 +36,27 @@ public class CustomerController {
                                @RequestParam String phone, Map<String,Object> model) {
         Customer customer = new Customer(name,surname,phone);
         customerRepository.save(customer);
-        Iterable<Customer> customers = customerRepository.findAll();
+
+        CustomersComparator customersComparator = new CustomersComparator();
+        List<Customer> customers = customerRepository.findAll();
+        customers.sort(customersComparator);
+
+        model.put("customers",customers);
+        return "redirect:/customers";
+    }
+
+    @PostMapping("/customersUpdates")
+    public String updateCustomers(@RequestParam String name, @RequestParam String surname, @RequestParam String phone, @RequestParam Integer id, Map<String,Object> model) {
+        Customer customer = customerRepository.findById(id).get();
+        customer.setName(name);
+        customer.setSurname(surname);
+        customer.setPhone(phone);
+        customerRepository.save(customer);
+        CustomersComparator customersComparator = new CustomersComparator();
+        customerRepository.findAll().sort(customersComparator);
+        List<Customer> customers = customerRepository.findAll();
+        customers.sort(customersComparator);
+
         model.put("customers",customers);
         return "redirect:/customers";
     }
@@ -51,6 +76,8 @@ public class CustomerController {
         } else {
             customerRepository.deleteById(id);
         }
+        CustomersComparator customersComparator = new CustomersComparator();
+        customerRepository.findAll().sort(customersComparator);
         Iterable<Customer> customers = customerRepository.findAll();
         model.put("customers",customers);
         return "redirect:/customers";

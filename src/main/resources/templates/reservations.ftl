@@ -59,6 +59,7 @@
                 <td>${reservation.finalDate}</td>
                 <td>${reservation.count}</td>
                 <td><button><a href="/reservations/delete/${reservation.id}">Delete</a></button></td>
+                <td><button type="button" id="openDialog">Update</button></td>
             </tr>
         </#list>
     </table>

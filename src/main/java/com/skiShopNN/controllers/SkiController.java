@@ -1,5 +1,6 @@
 package com.skiShopNN.controllers;
 
+import com.skiShopNN.comparators.SkiComparator;
 import com.skiShopNN.model.Reservation;
 import com.skiShopNN.model.Ski;
 import com.skiShopNN.repository.ReservationRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -21,17 +23,31 @@ public class SkiController {
 
     @GetMapping("/skis")
     public String skis(Map<String,Object> model) {
-        Iterable<Ski> skis = skiRepository.findAll();
+        List<Ski> skis = skiRepository.findAll();
+        SkiComparator skiComparator = new SkiComparator();
+        skis.sort(skiComparator);
         model.put("skis",skis);
         return "skis";
     }
 
-    @PostMapping("/skis")
+    @PostMapping("/skisAdd")
     public String addSkis(@RequestParam String name, @RequestParam String firm, @RequestParam String length, @RequestParam Integer price, Map<String,Object> model) {
         Ski ski = new Ski(name,length,firm,price);
         skiRepository.save(ski);
-        Iterable<Ski> skis = skiRepository.findAll();
+        List<Ski> skis = skiRepository.findAll();
+        SkiComparator skiComparator = new SkiComparator();
+        skis.sort(skiComparator);
         model.put("skis",skis);
+        return "redirect:/skis";
+    }
+
+    @PostMapping("/skisUpdates")
+    public String updateSki(@RequestParam String name, @RequestParam String firm, @RequestParam String length, @RequestParam Integer price, @RequestParam Integer id, Map<String,Object> model) {
+        Ski ski = skiRepository.findById(id).get();
+        ski.setName(name);
+        ski.setFirm(firm);
+        ski.setLength(length);
+        ski.setPrice(price);
         return "redirect:/skis";
     }
 
@@ -47,7 +63,9 @@ public class SkiController {
         } else {
             skiRepository.deleteById(id);
         }
-        Iterable<Ski> skis = skiRepository.findAll();
+        List<Ski> skis = skiRepository.findAll();
+        SkiComparator skiComparator = new SkiComparator();
+        skis.sort(skiComparator);
         model.put("skis",skis);
         return "redirect:/skis";
     }
