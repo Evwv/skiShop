@@ -24,8 +24,8 @@ public class CustomerController {
     @GetMapping("/customers")
     public String customers(Map<String,Object> model) {
         CustomersComparator customersComparator = new CustomersComparator();
-        customerRepository.findAll().sort(customersComparator);
         List<Customer> customers = customerRepository.findAll();
+        customers.sort(customersComparator);
         model.put("customers",customers);
         return"customers";
     }
