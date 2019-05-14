@@ -49,11 +49,11 @@
                         var btn = $(this);
                         var companyName = btn.data("company");
                         var country = btn.data("country");
-                        var numberOfEmployees = btn.data("numberOfEmployees");
+                        var numberOfEmployees = btn.data("employees");
                         var address = btn.data("address");
                         var phone = btn.data("phone");
                         var id = btn.data("id");
-                        $('#dialogUpdate input[name=companyName]').val(companyName);
+                        $('input[name=companyName]').val(companyName);
                         $('input[name=country]').val(country);
                         $('input[name=numberOfEmployees]').val(numberOfEmployees);
                         $('input[name=phone]').val(phone);
@@ -87,7 +87,7 @@
                 <td>${company.phone}</td>
                 <td><button><a href="/companies/delete/${company.id}">Delete</a></button></td>
                 <td><button  class="openDialogUpdate" data-company="${company.companyName}"
-                        data-country="${company.country}" data-numberOfEmployees="${company.numberOfEmployees}" data-address="${company.address}" data-phone="${company.phone}" data-id="${company.id}">
+                        data-country="${company.country}" data-employees="${company.numberOfEmployees}" data-address="${company.address}" data-phone="${company.phone}" data-id="${company.id}">
                     Update
                 </button></td>
             </tr>

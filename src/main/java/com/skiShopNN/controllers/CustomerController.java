@@ -26,7 +26,6 @@ public class CustomerController {
         CustomersComparator customersComparator = new CustomersComparator();
         customerRepository.findAll().sort(customersComparator);
         List<Customer> customers = customerRepository.findAll();
-        customers.sort(customersComparator);
         model.put("customers",customers);
         return"customers";
     }
@@ -36,12 +35,6 @@ public class CustomerController {
                                @RequestParam String phone, Map<String,Object> model) {
         Customer customer = new Customer(name,surname,phone);
         customerRepository.save(customer);
-
-        CustomersComparator customersComparator = new CustomersComparator();
-        List<Customer> customers = customerRepository.findAll();
-        customers.sort(customersComparator);
-
-        model.put("customers",customers);
         return "redirect:/customers";
     }
 
@@ -52,34 +45,21 @@ public class CustomerController {
         customer.setSurname(surname);
         customer.setPhone(phone);
         customerRepository.save(customer);
-        CustomersComparator customersComparator = new CustomersComparator();
-        customerRepository.findAll().sort(customersComparator);
-        List<Customer> customers = customerRepository.findAll();
-        customers.sort(customersComparator);
-
-        model.put("customers",customers);
         return "redirect:/customers";
     }
 
     @RequestMapping(value="customers/delete/{id}", method= RequestMethod.GET)
     public String delete(@PathVariable Integer id, Map<String,Object> model) {
-        Iterable<Reservation> reservations = reservationRepository.findAll();
+        List<Reservation> reservations = reservationRepository.findAll();
         if (reservations.iterator().hasNext()) {
             for (Reservation reservation : reservations) {
                 if (!(reservation.getCustomer().getId().equals(id))) {
                     customerRepository.deleteById(id);
-                }/* else {
-                    customerRepository.deleteById(id);
-                    reservationRepository.delete(reservation);
-                }*/
+                }
             }
         } else {
             customerRepository.deleteById(id);
         }
-        CustomersComparator customersComparator = new CustomersComparator();
-        customerRepository.findAll().sort(customersComparator);
-        Iterable<Customer> customers = customerRepository.findAll();
-        model.put("customers",customers);
         return "redirect:/customers";
     }
 }
