@@ -5,7 +5,6 @@ import com.skiShopNN.model.Reservation;
 import com.skiShopNN.model.Ski;
 import com.skiShopNN.repository.ReservationRepository;
 import com.skiShopNN.repository.SkiRepository;
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

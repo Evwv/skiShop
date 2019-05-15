@@ -28,6 +28,7 @@
                 <input type="text" name="purchaseDay" placeholder="purchaseDay">
                 <input type="text" name="count" placeholder="count">
                 <button type="submit" id="closeDialog">Add</button>
+                <button type="button" id="closeAdd">Cancel</button>
             </dialog>
             <script>
                 var dialog = document.querySelector('dialog');
@@ -35,6 +36,9 @@
                     dialog.show(); // Показываем диалоговое окно
                 }
                 document.querySelector('#closeDialog').onclick = function() {
+                    dialog.close(); // Прячем диалоговое окно
+                }
+                document.querySelector('#closeAdd').onclick = function () {
                     dialog.close(); // Прячем диалоговое окно
                 }
             </script>
@@ -59,12 +63,16 @@
                 <input type="text" name="count" placeholder="count">
                 <input type="hidden" name="id">
                 <button type="submit" id="closeDialogUpdate">Update</button>
+                <button type="button" id="closeUpdate">Cancel</button>
             </dialog>
             <script>
                 $(document).ready(function () {
                     console.log("ready!");
                     var dialog = document.getElementById('dialogUpdate');
                     document.querySelector('#closeDialogUpdate').onclick = function () {
+                        dialog.close(); // Прячем диалоговое окно
+                    }
+                    document.querySelector('#closeUpdate').onclick = function () {
                         dialog.close(); // Прячем диалоговое окно
                     }
                     $(".openDialogUpdate").click(function (e) {

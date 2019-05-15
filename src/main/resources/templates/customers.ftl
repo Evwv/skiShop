@@ -15,6 +15,7 @@
                 <input type="text" name="surname" placeholder="surname">
                 <input type="text" name="phone" placeholder="phone">
                 <button type="submit" id="closeDialogAdd">Add</button>
+                <button type="button" id="closeAdd">Cancel</button>
             </dialog>
             <script>
                 $(document).ready(function () {
@@ -26,6 +27,9 @@
                     document.querySelector('#closeDialogAdd').onclick = function () {
                         dialog.close(); // Прячем диалоговое окно
                     }
+                    document.querySelector('#closeAdd').onclick = function () {
+                        dialog.close(); // Прячем диалоговое окно
+                    }
                 });
             </script>
         </form>
@@ -35,13 +39,17 @@
                 <input type="text" name="surname" placeholder="surname">
                 <input type="text" name="phone" placeholder="phone">
                 <input type="hidden" name="id">
-                <button type="submit" id="closeDialogUpdate">Update</button>
+                <button type="submit" class="closeDialogUpdate">Update</button>
+                <button type="button" id="closeUpdate">Cancel</button>
             </dialog>
             <script>
                 $(document).ready(function () {
                     console.log("ready!");
                     var dialog = document.getElementById('dialogUpdate');
-                    document.querySelector('#closeDialogUpdate').onclick = function () {
+                    document.getElementsByClassName('closeDialogUpdate').onclick = function () {
+                        dialog.close(); // Прячем диалоговое окно
+                    }
+                    document.querySelector('#closeUpdate').onclick = function () {
                         dialog.close(); // Прячем диалоговое окно
                     }
                     $(".openDialogUpdate").click(function (e) {
