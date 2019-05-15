@@ -62,5 +62,18 @@ public class CustomerController {
         }
         return "redirect:/customers";
     }
+
+    @RequestMapping(value="customersUpdates/{id}", method= RequestMethod.POST)
+    public String update(@PathVariable Integer id, @RequestParam String name,
+                         @RequestParam String surname, @RequestParam String phone, Map<String,Object> model) {
+        Customer customer = customerRepository.findById(id).get();
+        customer.setName(name);
+        customer.setSurname(surname);
+        customer.setPhone(phone);
+        customerRepository.save(customer);
+        Iterable<Customer> customers = customerRepository.findAll();
+        model.put("customers",customers);
+        return "redirect:/customers";
+    }
 }
 

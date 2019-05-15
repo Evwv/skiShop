@@ -42,7 +42,7 @@ public class CompanyController {
 
     @RequestMapping(value = "companies/delete/{id}", method = RequestMethod.GET)
     public String deleteCompany(@PathVariable Integer id, Map<String, Object> model) {
-        Iterable<DiscountList> discountLists = discountListRepository.findAll();
+        List<DiscountList> discountLists = discountListRepository.findAll();
         if (discountLists.iterator().hasNext()) {
             for (DiscountList discountList : discountLists) {
                 if (!(discountList.getCompany().getId().equals(id))) {
