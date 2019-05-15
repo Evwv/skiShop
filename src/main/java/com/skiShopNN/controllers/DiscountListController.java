@@ -29,8 +29,6 @@ public class DiscountListController {
         discountLists.sort(discountListComparator);
         model.put("discountLists",discountLists);
         List<Company> companies = companyRepository.findAll();
-        CompaniesComparator companiesComparator = new CompaniesComparator();
-        companies.sort(companiesComparator);
         model.put("companies",companies);
         return "discountLists";
     }
