@@ -51,11 +51,12 @@ public class ShoppingListController {
 
     @PostMapping("/shoppingListsUpdate")
     public String update(@RequestParam Customer customer, @RequestParam Ski ski,
-                         @RequestParam Integer count, @RequestParam String purchaseDay,
+                         @RequestParam Integer count, @RequestParam String purchase,
                          @RequestParam Integer id, Map<String,Object> model) {
         ShoppingList shoppingList = shoppingListRepository.findById(id).get();
         shoppingList.setCustomer(customer);
         shoppingList.setSki(ski);
+        shoppingList.setPurchaseDay(purchase);
         shoppingList.setCount(count);
         shoppingListRepository.save(shoppingList);
         return "redirect:/shoppingLists";
