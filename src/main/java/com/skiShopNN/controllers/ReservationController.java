@@ -48,7 +48,7 @@ public class ReservationController {
                                   @RequestParam String count, Map<String,Object> model) {
         Reservation reservation = new Reservation(customers,skis,startDate,finalDate,count);
         reservationRepository.save(reservation);
-        Iterable<Reservation> reservations = reservationRepository.findAll();
+        List<Reservation> reservations = reservationRepository.findAll();
         model.put("reservations",reservations);
 
         return "redirect:/reservations";
@@ -71,8 +71,6 @@ public class ReservationController {
     @RequestMapping(value = "reservations/delete/{id}",method = RequestMethod.GET)
     public String deleteItem(@PathVariable Integer id, Map<String,Object> model) {
         reservationRepository.deleteById(id);
-        Iterable<Reservation> reservations = reservationRepository.findAll();
-        model.put("reservations",reservations);
         return "redirect:/reservations";
     }
 

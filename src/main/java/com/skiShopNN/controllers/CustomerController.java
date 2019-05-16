@@ -71,8 +71,6 @@ public class CustomerController {
         customer.setSurname(surname);
         customer.setPhone(phone);
         customerRepository.save(customer);
-        Iterable<Customer> customers = customerRepository.findAll();
-        model.put("customers",customers);
         return "redirect:/customers";
     }
 }

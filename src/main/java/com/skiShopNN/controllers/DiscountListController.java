@@ -25,10 +25,10 @@ public class DiscountListController {
     @GetMapping("/discountLists")
     public String discountLists(Map<String,Object> model) {
         List<DiscountList> discountLists = discountListRepository.findAll();
+        List<Company> companies = companyRepository.findAll();
         DiscountListComparator discountListComparator = new DiscountListComparator();
         discountLists.sort(discountListComparator);
         model.put("discountLists",discountLists);
-        List<Company> companies = companyRepository.findAll();
         model.put("companies",companies);
         return "discountLists";
     }
