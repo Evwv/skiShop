@@ -48,9 +48,6 @@ public class ReservationController {
                                   @RequestParam String count, Map<String,Object> model) {
         Reservation reservation = new Reservation(customers,skis,startDate,finalDate,count);
         reservationRepository.save(reservation);
-        List<Reservation> reservations = reservationRepository.findAll();
-        model.put("reservations",reservations);
-
         return "redirect:/reservations";
     }
 
