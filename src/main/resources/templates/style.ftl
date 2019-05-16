@@ -53,9 +53,10 @@
             <a href="/customers">Сustomers</a>
             <a href="/companies">Companies</a>
             <a href="/skis">Ski</a>
-            <a href="/reservations">Reservation</a>
-            <a href="/shoppingLists">ShoppingList</a>
-            <a href="/discountLists">DiscountList</a>
+            <a href="/reservations">Reservations</a>
+            <a href="/shoppingLists">Shopping Lists</a>
+            <a href="/discountLists">Discount Lists</a>
+            <a href="/"></a>
         </nav>
     </header>
 </#macro>
